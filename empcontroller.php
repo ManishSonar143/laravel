@@ -14,7 +14,7 @@ class empcontroller extends Controller
         //dd($req->all());
          $result=$req->all();
          $result['hobby']=implode(', ',$result['hobby']);
-
+         
          $file = $req->file('img');
         if ($file->isValid()) {
         // Generate a unique file name
@@ -22,10 +22,10 @@ class empcontroller extends Controller
 
         // Store the file in 'public/images' with the specified name
         $path = $file->storeAs('images', $fileName, 'public');
-
+       
         // Save the relative path in the database
         $result['img'] = $path;
-
+        $echo("hello");  
         return back()->with('success', 'File uploaded successfully!')->with('img', $path);
     } else {
         return back()->withErrors('File is not valid.');
